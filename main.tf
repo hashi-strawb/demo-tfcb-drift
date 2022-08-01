@@ -22,6 +22,20 @@ terraform {
 data "tfe_outputs" "aws-creds" {
   organization = "hashi_strawb_demo"
   workspace    = "bootstrap"
+
+  lifecycle {
+    # the output from the above must include roles
+    postcondition {
+      condition     = contains(keys(self.values), "roles")
+      error_message = "Bootstrap workspace does not contain a 'roles' output variable; check remote state sharing configuration"
+    }
+
+    # and that role must include a value for this workspace
+    postcondition {
+      condition     = contains(keys(self.values.roles), terraform.workspace)
+      error_message = "Bootstrap workspace does not contain a role for this workspace; ensure this workspace has the correct tags, then re-apply the bootstrap workspace"
+    }
+  }
 }
 
 provider "doormat" {}
@@ -53,7 +67,7 @@ data "aws_caller_identity" "current" {}
 
 
 resource "aws_iam_role" "demo_drift_role" {
-  name = "demo_drift_role"
+  name = "strawb-demo_drift_role"
 
   tags = {
     configured-with = "terraform"
