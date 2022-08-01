@@ -18,6 +18,16 @@ terraform {
   }
 }
 
+# Find the arn for the AWS role we need
+data "tfe_outputs" "aws-creds" {
+  organization = "hashi_strawb_demo"
+  workspace    = "bootstrap"
+}
+output "test" {
+  value     = data.tfe_outputs.aws-creds
+  sensitive = true
+}
+
 provider "doormat" {}
 
 data "doormat_aws_credentials" "creds" {
