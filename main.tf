@@ -21,7 +21,7 @@ resource "tfe_workspace" "this" {
 
   vcs_repo {
     identifier     = "hashi-strawb/demo-tfcb-drift"
-    oauth_token_id = "" # Unset because this is a public repo?
+    oauth_token_id = "ot-hgXVE3ukvEeULkPU"
   }
 
   lifecycle {
