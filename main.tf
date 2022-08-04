@@ -15,16 +15,17 @@ terraform {
 }
 
 resource "tfe_workspace" "this" {
-  name         = "demo-tfcb-drift"
-  organization = "hashi_strawb_demo"
-  tag_names    = ["demo:tfcb"]
+  name         = var.workspace_name
+  organization = var.organization
+  tag_names    = var.workspace_tags
 
   vcs_repo {
-    identifier     = "hashi-strawb/demo-tfcb-drift"
-    oauth_token_id = "ot-hgXVE3ukvEeULkPU"
+    identifier     = var.vcs_repo
+    oauth_token_id = var.oauth_token_id
   }
 
   lifecycle {
+    # As I am managing my own workspace, do not allow me to destroy the workspace
     prevent_destroy = true
   }
 }
