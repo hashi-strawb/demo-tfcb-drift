@@ -22,7 +22,10 @@ resource "tfe_workspace" "this" {
 
   vcs_repo {
     identifier     = var.vcs_repo
-    oauth_token_id = var.oauth_token_id
+
+# TODO: variable for that, or data source
+github_app_installation_id =
+"ghain-3JcBMQW48TPfPn4f"
   }
 
   lifecycle {
