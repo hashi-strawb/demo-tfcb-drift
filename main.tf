@@ -24,8 +24,7 @@ resource "tfe_workspace" "this" {
     identifier     = var.vcs_repo
 
 # TODO: variable for that, or data source
-github_app_installation_id =
-"ghain-3JcBMQW48TPfPn4f"
+github_app_installation_id = "ghain-3JcBMQW48TPfPn4f"
   }
 
   lifecycle {
