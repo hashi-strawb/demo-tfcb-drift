@@ -27,8 +27,4 @@ resource "tfe_workspace" "this" {
 github_app_installation_id = "ghain-3JcBMQW48TPfPn4f"
   }
 
-  lifecycle {
-    # As I am managing my own workspace, do not allow me to destroy the workspace
-    prevent_destroy = true
-  }
 }
