@@ -27,4 +27,7 @@ resource "tfe_workspace" "this" {
 github_app_installation_id = "ghain-3JcBMQW48TPfPn4f"
   }
 
+# allow self-destruct
+force_delete = true
+
 }
